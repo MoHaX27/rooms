@@ -32,7 +32,7 @@ window.roomCategories = {
             baseOverPrice: 2550,
             extraOverPrice: 1070,
             maxBaseGuests: 2,
-			      maxExtraGuests: 1,
+			      maxExtraGuests: 0,
             printName: "Стандарт в 3х"
         },
         "372022831": { //  Комфорт 2 местный 2х комнатный
