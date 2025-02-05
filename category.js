@@ -1,4 +1,4 @@
-const roomCategories = {
+const roomCategories1 = {
         "184076863": { //  Стандарт 2х местный
             basePrice: 1400, // Стоимость основного места
             extraPrice: 800, // Стоимость дополнительного места
