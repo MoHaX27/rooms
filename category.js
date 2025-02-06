@@ -136,6 +136,15 @@ window.roomCategories = {
 	    maxExtraGuests: 1,
             printName: "2х Стандарт"
         },
+	"620115699": { //  1-но местный стандарт 
+            basePrice: 2840,
+            extraPrice: 840,
+            baseOverPrice: 2840,
+            extraOverPrice: 840,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 0,
+            printName: "1х Стандарт"
+        },
     };
 
  window.baza = {
