@@ -172,6 +172,24 @@ window.roomCategories = {
 	    maxExtraGuests: 2,
             printName: "Комфорт"
         },
+	"1505128695": { //  Люкс-Cтудия
+            basePrice: 2510,
+            extraPrice: 1420,
+            baseOverPrice: 2510,
+            extraOverPrice: 1420,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "Люкс-Студия"
+        },
+	"627656902": { //  Люкс-Студия 2-х местн. размещ. (2+1)
+            basePrice: 2510,
+            extraPrice: 1420,
+            baseOverPrice: 2510,
+            extraOverPrice: 1420,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 1,
+            printName: "Люкс-Студия"
+        },
 	"2462037087": { //  Люкс-Студия 1-местн. размещ.
             basePrice: 4520,
             extraPrice: 1420,
