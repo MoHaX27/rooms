@@ -152,7 +152,7 @@ window.roomCategories = {
             extraOverPrice: 1250,
             maxBaseGuests: 2,
 	    maxExtraGuests: 0,
-            printName: "1х Стандарт"
+            printName: "Комфорт"
         },
 	"2462037087": { //  Люкс-Студия 1-местн. размещ.
             basePrice: 4520,
