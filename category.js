@@ -145,6 +145,15 @@ window.roomCategories = {
 	    maxExtraGuests: 0,
             printName: "1х Стандарт"
         },
+	"2038853658": { //  2-х местный 2-х комнатный Комфорт 
+            basePrice: 2380,
+            extraPrice: 1250,
+            baseOverPrice: 2380,
+            extraOverPrice: 1250,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "1х Стандарт"
+        },
 	"2462037087": { //  Люкс-Студия 1-местн. размещ.
             basePrice: 4520,
             extraPrice: 1420,
