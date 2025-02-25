@@ -199,6 +199,142 @@ window.roomCategories = {
 	    maxExtraGuests: 0,
             printName: "1но мест Люкс-Студия"
         },
+	////////////////////////// АЛЫЕ ПАРУСА /////////////////////////
+	"3140483411": { //  1-но местный Стандарт 
+            basePrice: 1230,
+            extraPrice: 550,
+            baseOverPrice: 1640,
+            extraOverPrice: 670,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 0,
+            printName: "Стандарт"
+        },
+	"2303439199": { //  2х местный Стандарт 
+            basePrice: 1060,
+            extraPrice: 550,
+            baseOverPrice: 1510,
+            extraOverPrice: 670,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "Стандарт"
+        },
+	"3675283048": { //  2х местный Стандарт (2+1) 
+            basePrice: 1060,
+            extraPrice: 550,
+            baseOverPrice: 1510,
+            extraOverPrice: 670,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 1,
+            printName: "Стандарт"
+        },
+	"3576145298": { //  3х местный Стандарт
+            basePrice: 900,
+            extraPrice: 550,
+            baseOverPrice: 1420,
+            extraOverPrice: 670,
+            maxBaseGuests: 3,
+	    maxExtraGuests: 0,
+            printName: "Стандарт"
+        },
+	"370570838": { //  3х местный Стандарт (3+1)
+            basePrice: 900,
+            extraPrice: 550,
+            baseOverPrice: 1420,
+            extraOverPrice: 670,
+            maxBaseGuests: 3,
+	    maxExtraGuests: 1,
+            printName: "Стандарт"
+        },
+	"1831337534": { //  2х местный 2х комнатный Комфорт 
+            basePrice: 1540,
+            extraPrice: 650,
+            baseOverPrice: 2070,
+            extraOverPrice: 760,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "Комфорт"
+        },
+	"2889645082": { //  2х местный 2х комнат Комфорт (2+1) 
+            basePrice: 1540,
+            extraPrice: 650,
+            baseOverPrice: 2070,
+            extraOverPrice: 760,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 1,
+            printName: "Комфорт"
+        },
+	"3477010176": { //  2х местный 2х комнатный Комфорт (2+2) 
+            basePrice: 1540,
+            extraPrice: 650,
+            baseOverPrice: 2070,
+            extraOverPrice: 760,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 2,
+            printName: "Комфорт"
+        },
+	"2782405903": { //  2х мест 2х комнат Комфорт (с кухней) 
+            basePrice: 1780,
+            extraPrice: 700,
+            baseOverPrice: 2270,
+            extraOverPrice: 880,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "Комфорт (с кухней)"
+        },
+	"2176035421": { //  2х мест 2х комнат Комфорт (с кухней (2+1) 
+            basePrice: 1780,
+            extraPrice: 700,
+            baseOverPrice: 2270,
+            extraOverPrice: 880,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 1,
+            printName: "Комфорт (с кухней)"
+        },
+	"3201505495": { //  2х местный 2х комнатный Комфорт (с кухней) (2+2)
+            basePrice: 1780,
+            extraPrice: 700,
+            baseOverPrice: 2270,
+            extraOverPrice: 880,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 2,
+            printName: "Комфорт (с кухней)"
+        },
+	"1653107628": { //  4х местный 2х комнатный Семейный (с кухней)
+            basePrice: 1280,
+            extraPrice: 700,
+            baseOverPrice: 1840,
+            extraOverPrice: 880,
+            maxBaseGuests: 4,
+	    maxExtraGuests: 0,
+            printName: "4х Комфорт (с кухней)"
+        },
+	"867276793": { //  4х местный 2х комнатный Семейный (с кухней) (4+1)
+            basePrice: 1280,
+            extraPrice: 700,
+            baseOverPrice: 1840,
+            extraOverPrice: 880,
+            maxBaseGuests: 4,
+	    maxExtraGuests: 1,
+            printName: "4х Комфорт (с кухней)"
+        },
+	"3644462357": { //  2х местный Эконом
+            basePrice: 650,
+            extraPrice: 0,
+            baseOverPrice: 880,
+            extraOverPrice: 0,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "2х Эконом"
+        },
+	"4234027792": { //  3х местный Эконом
+            basePrice: 620,
+            extraPrice: 0,
+            baseOverPrice: 830,
+            extraOverPrice: 0,
+            maxBaseGuests: 3,
+	    maxExtraGuests: 0,
+            printName: "3х Эконом"
+        },
     };
 
  window.baza = {
@@ -211,7 +347,7 @@ window.roomCategories = {
             name: "Стрежень",
             foodPrice: 1130
         },
-        "GG": {
+        "2756": {
             name: "ГГ",
             foodPrice: 1130
         }
