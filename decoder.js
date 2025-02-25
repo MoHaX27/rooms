@@ -295,7 +295,7 @@
         resultDiv.style.right = '10px';
         resultDiv.style.zIndex = '1000';
         resultDiv.textContent = `${output} ${bazaId}`;
-        document.body.appendChild(resultDiv);
+        // document.body.appendChild(resultDiv);
 
         const targetElement = document.querySelector('.bookmarks__item.m-summary.d-tablet-none');
 
