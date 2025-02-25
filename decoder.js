@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
