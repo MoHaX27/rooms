@@ -88,6 +88,7 @@
         const roomCategory = document.querySelector('.form__ellipsis').textContent.replace(/\s{2,}/g, ' ');
         console.log("Room category extracted:", roomCategory);
         console.log("Room category hash:", strHash(roomCategory));
+	console.log("Бобр курва");
         const roomNumber = document.querySelector('.form__room-number').textContent.replace(/[\s\u202f]/g, '');
         const tarif = strHash(document.querySelector('.form__inline.lh30').textContent);
 		console.log("tarif:", tarif);
