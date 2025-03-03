@@ -199,7 +199,7 @@ window.roomCategories = {
 	    maxExtraGuests: 0,
             printName: "1но мест Люкс-Студия"
         },
-	////////////////////////// АЛЫЕ ПАРУСА /////////////////////////
+	////////////////////////// ГОЛУБАЯ ГАВАНЬ /////////////////////////
 	"3140483411": { //  1-но местный Стандарт 
             basePrice: 1230,
             extraPrice: 550,
@@ -310,9 +310,9 @@ window.roomCategories = {
         },
 	"867276793": { //  4х местный 2х комнатный Семейный (с кухней) (4+1)
             basePrice: 1280,
-            extraPrice: 700,
+            extraPrice: 550,
             baseOverPrice: 1840,
-            extraOverPrice: 880,
+            extraOverPrice: 670,
             maxBaseGuests: 4,
 	    maxExtraGuests: 1,
             printName: "4х Комфорт (с кухней)"
