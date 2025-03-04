@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      1.8
+// @version      1.9
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -92,6 +92,9 @@
         const roomNumber = document.querySelector('.form__room-number').textContent.replace(/[\s\u202f]/g, '');
         const tarif = strHash(document.querySelector('.form__inline.lh30').textContent);
 		console.log("tarif:", tarif);
+
+		if(tarif == 3841051839 || tarif == 2227469116){ return; } // вазовские брони в игнор
+
         const bazaId = document.querySelector('.offline-header.js-offline-header').getAttribute('data-account-id');
         console.log("bazaId:", bazaId);
         let discountReason = document.querySelector('.text.discountContainerReason');
