@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      1.9
+// @version      2.0
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -322,7 +322,11 @@
 
             // Создаем элемент для всплывающей подсказки
             const tooltip = document.createElement('div');
-            tooltip.textContent = 'Скопировано!';
+	    if(rounded(totalPrice, 0) == summ){
+            	tooltip.textContent = 'Скопировано!';
+	    }else{
+	    	tooltip.textContent = 'Ошибка: Сумма расчета!'; 
+	    }
             tooltip.style.cssText = `
             position: absolute;
             background-color: #333;
@@ -351,7 +355,9 @@
 
             // Добавляем обработчик события для кнопки
             button.addEventListener('click', () => {
-                GM_setClipboard(output, 'text');
+		if(rounded(totalPrice, 0) == summ){
+                	GM_setClipboard(output, 'text');
+		}
 
                 // Показываем подсказку с fade in эффектом
                 tooltip.style.display = 'block';
