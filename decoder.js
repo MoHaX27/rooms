@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.1
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -214,7 +214,7 @@
 				if(serviceFoodCount < numAdults){
 					price = basePriceWithDisc + (numDays * window.baza[bazaId].foodPrice); summ += price * serviceFoodCount;
 					output = `${price}*${serviceFoodCount} с пит `;
-					price = basePriceWithDisc; summ += price;
+					price = basePriceWithDisc; summ += price * (numAdults - serviceFoodCount);
 					output += `${price}*${numAdults - serviceFoodCount} без пит `;
 					if(numChildren){
 						price = extraPriceWithDisc; summ += price * numChildren;
