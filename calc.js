@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rooms Calc
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Калькулятор стоимости номера
 // @author       MoHaX
 // @match        https://online.bnovo.ru/planning*
@@ -96,14 +96,26 @@
         }
     };
 
+//    function getRoomCategories() {
+//        let categories = new Set();
+//        document.querySelectorAll('.planning-roomtype-name__text').forEach(el => {
+//            categories.add(el.textContent.trim());
+//        });
+//		//console.log("categories ", categories);
+//        return Array.from(categories);
+//    }
     function getRoomCategories() {
-        let categories = new Set();
-        document.querySelectorAll('.planning-roomtype-name__text').forEach(el => {
-            categories.add(el.textContent.trim());
-        });
-		//console.log("categories ", categories);
-        return Array.from(categories);
-    }
+	    let categories = new Set();
+	    document.querySelectorAll('.planning-roomtype-name__text').forEach(el => {
+	        let text = el.textContent.trim();
+	        // Пропускаем, если текст начинается с дефиса
+	        if (!text.startsWith("-")) {
+	            categories.add(text);
+	        }
+	    });
+	    //console.log("categories ", categories);
+	    return Array.from(categories);
+     }
 	let categorySelect, discountSlider, extraPlacesSlider, foodSlider, healSlider, daysSlider, seasonCheckbox, priceDisplay, bazaId, priceData;
 
     function createCategorySelect() {
