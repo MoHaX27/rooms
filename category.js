@@ -199,6 +199,15 @@ window.roomCategories = {
 	    maxExtraGuests: 0,
             printName: "1но мест Люкс-Студия"
         },
+	"4130272292": { //  Апт. 3-местн. размещ. 
+            basePrice: 3320,
+            extraPrice: 1420,
+            baseOverPrice: 3320,
+            extraOverPrice: 1420,
+            maxBaseGuests: 3,
+	    maxExtraGuests: 0,
+            printName: "3х Аппартаменты"
+        },
 	////////////////////////// ГОЛУБАЯ ГАВАНЬ /////////////////////////
 	"3140483411": { //  1-но местный Стандарт 
             basePrice: 1230,
