@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      3.1
+// @version      3.2
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -178,7 +178,7 @@
         const bFood = (tarif == 2711387350 || tarif == 1145766435 || tarif == 3136482944 || serviceFoodCount == numTickets);
 		if(bFood){ serviceFoodCount = numTickets }
 		const bMed = (tarif == 1145766435 || serviceMedCount == numTickets);
-		if(bMed){ serviceFoodCount = numTickets }
+		if(bMed){ serviceMedCount = numTickets }
         let room = window.roomCategories[strHash(roomCategory)];
 		if(!room){
 			room = window.roomCategories[0];
