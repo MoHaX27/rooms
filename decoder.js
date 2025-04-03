@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      3.0
+// @version      3.1
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -218,7 +218,7 @@
 				tempBasePrice = discountPercentage > 0 ? basePrice - (basePrice * (discountPercentage / 100)) : basePrice;
 				basePriceWithDisc += (tempBasePrice * monthlyDays[2].days);
 
-				price = basePriceWithDisc + (serviceFoodCount > 0 ? (numDays * window.baza[bazaId].foodPrice) : 0);
+				price = (room.maxBaseGuests / numAdults * basePriceWithDisc) + (serviceFoodCount > 0 ? (numDays * window.baza[bazaId].foodPrice) : 0);
 				summ += price;
 				addNumber(price, serviceFoodCount > 0 ? true : false, false, false);
 				serviceFoodCount--;
