@@ -279,7 +279,7 @@
         output += `\t${formattedCheckIn}-${formattedCheckOut},         ${numDays} дн.\t${window.baza[bazaId].name} `;
 
         if(room.printName == "Стандарт" || room.printName == "Стандарт в 3х"){
-            output += `\t${numAdults}x ${room.printName}, ${roomNumber} `;
+            output += `\t${mainGuests}x ${room.printName}, ${roomNumber} `;
         }else{
             output += `\t${room.printName}, ${roomNumber} `;
         }
