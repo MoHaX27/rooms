@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      3.3
+// @version      3.4
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -182,7 +182,7 @@
         let room = window.roomCategories[strHash(roomCategory)];
 		if(!room){
 			room = window.roomCategories[0];
-			/////alert("Расшифровка: Тариф не найден!");
+			alert("Расшифровка: Тариф не найден!");
 		}
 
 		let summ = 0;
@@ -206,8 +206,10 @@
 				});
 			}
 		}
-
-		for (let i = 1; i <= numAdults; i++) { // Расчет основных мест
+		const mainGuests = numTickets >= room.maxBaseGuests ? room.maxBaseGuests : numTickets;
+	    	const extraGuests = numTickets >= room.maxBaseGuests ? (numTickets - room.maxBaseGuests) : 0;
+	    	console.log("mainGuests: ", mainGuests, " extraGuests: ", extraGuests);
+		for (let i = 1; i <= mainGuests; i++) { // Расчет основных мест
 			let price = 0;
 			if(bazaId == 1534 || bazaId == 2756){ // Стрежень Гавань
 				let basePrice = monthlyDays[1].month == 7 || monthlyDays[1].month == 8 ? room.baseOverPrice : room.basePrice;
@@ -218,7 +220,7 @@
 				tempBasePrice = discountPercentage > 0 ? basePrice - (basePrice * (discountPercentage / 100)) : basePrice;
 				basePriceWithDisc += (tempBasePrice * monthlyDays[2].days);
 
-				price = (room.maxBaseGuests / numAdults * basePriceWithDisc) + (serviceFoodCount > 0 ? (numDays * window.baza[bazaId].foodPrice) : 0);
+				price = (room.maxBaseGuests / mainGuests * basePriceWithDisc) + (serviceFoodCount > 0 ? (numDays * window.baza[bazaId].foodPrice) : 0);
 				summ += price;
 				addNumber(price, serviceFoodCount > 0 ? true : false, false, false);
 				serviceFoodCount--;
@@ -234,7 +236,7 @@
 				serviceMedCount--;
 			}
 		}
-		for (let i = 1; i <= numChildren; i++) { // Расчет доп. мест
+		for (let i = 1; i <= extraGuests; i++) { // Расчет доп. мест
 			let price = 0;
 			if(bazaId == 1534 || bazaId == 2756) { // Стрежень Гавань
 				let extraPrice = monthlyDays[1].month == 7 || monthlyDays[1].month == 8 ? room.extraOverPrice : room.extraPrice;
@@ -262,7 +264,7 @@
 		}
 		console.log("Сумма брони: ", rounded(totalPrice, 0), " Расчет: ", summ);
 		if(rounded(totalPrice, 0) != summ){
-			///////alert("Расшифровка: Сумма брони не совпадает с расчетом! Проверьте бронь");
+			alert("Расшифровка: Сумма брони не совпадает с расчетом! Проверьте бронь");
 		}
 		let output = '';
 		for (let kek in database) {
@@ -286,7 +288,7 @@
             output += `\t${ discountPercentage }% ${ window.discount[strHash(discountReason)] ? window.discount[strHash(discountReason)].name : window.discount["null"].name}`;
         }
 
-        //console.log("Детали брони:", output);
+        console.log("Детали брони:", output);
 
         // Display the output on the page
         const resultDiv = document.createElement('div');
@@ -323,15 +325,15 @@
 
             // Создаем элемент для всплывающей подсказки
             const tooltip = document.createElement('div');
-			//if(rounded(totalPrice, 0) == summ){
-			//	tooltip.textContent = 'Скопировано!';
-			//	button.disabled = false; // Включаем кнопку
-       			//button.style.opacity = '1'; // Восстанавливаем прозрачность
-			//}else{
+			if(rounded(totalPrice, 0) == summ){
+				tooltip.textContent = 'Скопировано!';
+				button.disabled = false; // Включаем кнопку
+       			button.style.opacity = '1'; // Восстанавливаем прозрачность
+			}else{
 				tooltip.textContent = 'Ошибка: Сумма расчета!';
 				button.disabled = true; // Выключаем кнопку
         		button.style.opacity = '0.5'; // Снижаем прозрачность
-			//}
+			}
             tooltip.style.cssText = `
             position: absolute;
             background-color: #333;
