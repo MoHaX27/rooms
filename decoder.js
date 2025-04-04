@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      3.2
+// @version      3.3
 // @description  Automatically decode Bnovo booking information
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
@@ -182,12 +182,12 @@
         let room = window.roomCategories[strHash(roomCategory)];
 		if(!room){
 			room = window.roomCategories[0];
-			alert("Расшифровка: Тариф не найден!");
+			/////alert("Расшифровка: Тариф не найден!");
 		}
 
 		let summ = 0;
 		if (room.maxBaseGuests != numAdults || room.maxExtraGuests != numChildren){
-			alert("Расшифровка: Проверьте количество гостей, не совпадает с тарифом!");
+			//////alert("Расшифровка: Проверьте количество гостей, не совпадает с тарифом!");
 		}
 
 		let database = [];
@@ -262,7 +262,7 @@
 		}
 		console.log("Сумма брони: ", rounded(totalPrice, 0), " Расчет: ", summ);
 		if(rounded(totalPrice, 0) != summ){
-			alert("Расшифровка: Сумма брони не совпадает с расчетом! Проверьте бронь");
+			///////alert("Расшифровка: Сумма брони не совпадает с расчетом! Проверьте бронь");
 		}
 		let output = '';
 		for (let kek in database) {
@@ -286,7 +286,7 @@
             output += `\t${ discountPercentage }% ${ window.discount[strHash(discountReason)] ? window.discount[strHash(discountReason)].name : window.discount["null"].name}`;
         }
 
-        console.log("Детали брони:", output);
+        //console.log("Детали брони:", output);
 
         // Display the output on the page
         const resultDiv = document.createElement('div');
@@ -323,15 +323,15 @@
 
             // Создаем элемент для всплывающей подсказки
             const tooltip = document.createElement('div');
-			if(rounded(totalPrice, 0) == summ){
-				tooltip.textContent = 'Скопировано!';
-				button.disabled = false; // Включаем кнопку
-       			button.style.opacity = '1'; // Восстанавливаем прозрачность
-			}else{
+			//if(rounded(totalPrice, 0) == summ){
+			//	tooltip.textContent = 'Скопировано!';
+			//	button.disabled = false; // Включаем кнопку
+       			//button.style.opacity = '1'; // Восстанавливаем прозрачность
+			//}else{
 				tooltip.textContent = 'Ошибка: Сумма расчета!';
 				button.disabled = true; // Выключаем кнопку
         		button.style.opacity = '0.5'; // Снижаем прозрачность
-			}
+			//}
             tooltip.style.cssText = `
             position: absolute;
             background-color: #333;
