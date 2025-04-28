@@ -68,7 +68,7 @@
             const currentMonth = currentDate.getMonth() + 1;
             const isFirstMonth = currentMonth === firstMonth && currentDate.getFullYear() === firstYear;
 
-            const key = isFirstMonth ? 1 : 2;
+            const key = (currentMonth == 7 || currentMonth == 8) ? 1 : 2;//isFirstMonth ? 1 : 2;
             result[key].days++;
             result[key].month = currentMonth;
 
