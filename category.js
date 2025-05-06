@@ -7,7 +7,7 @@ window.roomCategories = {
             maxBaseGuests: 0,
 	    maxExtraGuests: 0,
             printName: "Null",
-	    checkName: ""
+	    checkName: "Null"
         },
 	////////////////////////// СТРЕЖЕНЬ /////////////////////////
         "184076863": { //  Стандарт 2х местный
