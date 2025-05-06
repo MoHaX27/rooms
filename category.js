@@ -58,7 +58,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 0,
             printName: "Комфорт",
-	    checkName: "Комфорт 2 местный 2х комнатный"
+	    checkName: "Комфорт 2х местный 2х комнатный"
         },
         "3121715328": { //  Комфорт (2+1)
             basePrice: 2160,
@@ -68,7 +68,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 1,
             printName: "Комфорт",
-	    checkName: "Комфорт 2 местный 2х комнатный"
+	    checkName: "Комфорт 2х местный 2х комнатный"
         },
         "2844400129": { //  Комфорт (2+2)
             basePrice: 2160,
@@ -78,7 +78,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 2,
             printName: "Комфорт",
-	    checkName: "Комфорт 2 местный 2х комнатный"
+	    checkName: "Комфорт 2х местный 2х комнатный"
         },
         "1334863395": { //  Дуплекс 2х местный 2х комнатный
             basePrice: 1700,
@@ -149,7 +149,7 @@ window.roomCategories = {
             maxBaseGuests: 1,
 	    maxExtraGuests: 1,
             printName: "2х Стандарт",
-	    checkName: "Стандарт 2-х местный"
+	    checkName: "Стандарт 2х местный"
         },
 	"620115699": { //  1-но местный стандарт 
             basePrice: 2840,
@@ -159,7 +159,7 @@ window.roomCategories = {
             maxBaseGuests: 1,
 	    maxExtraGuests: 0,
             printName: "1х Стандарт",
-	    checkName: "1-но местный стандарт"
+	    checkName: "1но местный стандарт"
         },
 	"2038853658": { //  2-х местный 2-х комнатный Комфорт 
             basePrice: 2380,
@@ -169,7 +169,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 0,
             printName: "Комфорт",
-	    checkName: "2-х местный 2-х комнатный Комфорт"
+	    checkName: "2х местный 2х комнатный Комфорт"
         },
 	"3870794209": { //  2-х местный 2-х комнатный Комфорт(2+1) 
             basePrice: 2380,
@@ -179,7 +179,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 1,
             printName: "Комфорт",
-	    checkName: "2-х местный 2-х комнатный Комфорт"
+	    checkName: "2х местный 2х комнатный Комфорт"
         },
 	"62943580": { //  2-х местный 2-х комнатный Комфорт (2+2)
             basePrice: 2380,
@@ -189,7 +189,7 @@ window.roomCategories = {
             maxBaseGuests: 2,
 	    maxExtraGuests: 2,
             printName: "Комфорт",
-	    checkName: "2-х местный 2-х комнатный Комфорт"
+	    checkName: "2х местный 2х комнатный Комфорт"
         },
 	"1505128695": { //  Люкс-Cтудия
             basePrice: 2510,
@@ -198,8 +198,8 @@ window.roomCategories = {
             extraOverPrice: 1420,
             maxBaseGuests: 2,
 	    maxExtraGuests: 0,
-            printName: "Люкс-Студия",
-	    checkName: "Люкс-Студия"
+            printName: "Люкс Студия",
+	    checkName: "Люкс Студия"
         },
 	"627656902": { //  Люкс-Студия 2-х местн. размещ. (2+1)
             basePrice: 2510,
@@ -208,8 +208,8 @@ window.roomCategories = {
             extraOverPrice: 1420,
             maxBaseGuests: 2,
 	    maxExtraGuests: 1,
-            printName: "Люкс-Студия",
-	    checkName: "Люкс-Студия"
+            printName: "Люкс Студия",
+	    checkName: "Люкс Студия"
         },
 	"2462037087": { //  Люкс-Студия 1-местн. размещ.
             basePrice: 4520,
@@ -218,8 +218,8 @@ window.roomCategories = {
             extraOverPrice: 1420,
             maxBaseGuests: 1,
 	    maxExtraGuests: 0,
-            printName: "1но мест Люкс-Студия",
-	    checkName: "Люкс-Студия"
+            printName: "1но мест Люкс Студия",
+	    checkName: "Люкс Студия"
         },
 	"4130272292": { //  Апт. 3-местн. размещ. 
             basePrice: 3320,
@@ -240,7 +240,7 @@ window.roomCategories = {
             maxBaseGuests: 1,
 	    maxExtraGuests: 0,
             printName: "Стандарт",
-	    checkName: "1-но местный Стандарт"
+	    checkName: "1но местный Стандарт"
         },
 	"2303439199": { //  2х местный Стандарт 
             basePrice: 1060,
