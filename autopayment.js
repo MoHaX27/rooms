@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Оплата 1Tap v2
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Авто оплата
 // @author       MoHaX
 // @match        https://online.bnovo.ru/booking/general/*
@@ -11,6 +11,13 @@
 
 (function() {
     'use strict';
+	let price = 0;
+	function formatPrice(num) {
+	  // Приводим к числу и форматируем
+	  return num.toFixed(2)
+		.replace('.', ',')
+		.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+	}
 	function loadScript(src, callback) {
 		const script = document.createElement('script');
 		script.src = src;
@@ -22,6 +29,64 @@
 		document.head.appendChild(script);
 	}
 	loadScript(`https://online.bnovo.ru/public/js/payment_form.js` , function () { console.log('payment_form загружен!'); });
+	function paymentFormSubmit(action) {
+	   let form = $('#payment_form');
+	   let fiscal_check_printed = form.find('input[name=fiscal_check_printed]');
+	   preloader_show();
+
+	   if (fiscal_check_printed) {
+		  form.find('select, input, textarea').prop('disabled', false);
+	   }
+
+	   form.ajaxSubmit({
+		  url: '/booking/' + action,
+		  dataType: 'json',
+		  success: function(data) {
+			 if (fiscal_check_printed) {
+				makeFiscalCheckPrintedForm();
+			 }
+			 if ( data.result == 'success' || data == 'session_expired' ) {
+			   	const bookingId = form.find('input[name^=booking_id]').val();
+			   	document.dispatchEvent(new CustomEvent("booking-legacy-edit", {detail: {bookingId: bookingId}}));
+				form.arcticmodal('close');
+				 const formatted = formatPrice(price);
+
+				// Вставляем в элемент
+				const el = document.querySelector('.status.m-text-green');
+				if (el) {
+				  // Удаляем старый текст, кроме валютного знака
+				  const currency = el.querySelector('.currency-sign');
+				  if (currency) {
+					el.textContent = formatted;
+					el.appendChild(currency);
+				  } else {
+					el.textContent = formatted + ' ₽'; // Если знак не найден — добавляем вручную
+				  }
+				}
+				// paymentDone = true;
+			   	//location.reload();
+			 }
+			 else if (data.result == 'unauthorized_action') {
+				preloader_hide();
+				access_restricted_show( false );
+			 }
+			 else if (data.errors) {
+				preloader_hide();
+				displayPaymentErrors(data.errors);
+			 }
+			 else {
+				preloader_hide();
+			 }
+		  },
+		  error: function(jqXHR, exception) {
+			 if (fiscal_check_printed) {
+				makeFiscalCheckPrintedForm();
+			 }
+			 preloader_hide();
+			 error_show(I18nUI.__('Ошибка отправки запроса. Попробуйте позже'), 'm-red');
+		  }
+	   });
+	}
 	function ensurePaymentModalExists() {
 	  if (!document.getElementById('payment_modal')) {
 		const wrapper = document.createElement('div');
@@ -61,7 +126,7 @@
 
         const targetElement = document.querySelector('.bookmarks__item.m-summary.d-tablet-none');
 		const totalPrice = rounded(extractFromBookingPage('table.form__summary tbody tr th:nth-child(2)'),0); // Финальная стоимость со скидкой
-
+		price = totalPrice;
         if (targetElement) {
             // Создаем кнопку
             const button = document.createElement('button');
