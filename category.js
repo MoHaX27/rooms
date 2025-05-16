@@ -241,6 +241,16 @@ window.roomCategories = {
             printName: "2х Стандарт (Корпус 1)",
 	    checkName: "Стандарт 2х местный (Корпус 1)"
         },
+	"242212083": { //  1но местный - Корпус 1
+            basePrice: 3530,
+            extraPrice: 1300,
+            baseOverPrice: 3530,
+            extraOverPrice: 1300,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 1,
+            printName: "1но Стандарт (Корпус 1)",
+	    checkName: "Стандарт 1но местный (Корпус 1)"
+        },
 	////////////////////////// ГОЛУБАЯ ГАВАНЬ /////////////////////////
 	"3140483411": { //  1-но местный Стандарт 
             basePrice: 1230,
