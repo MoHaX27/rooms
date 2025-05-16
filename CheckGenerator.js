@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Excel check generator
+// @name         Group mod
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Загружает Excel-шаблон, вставляет данные, сохраняет
+// @version      1.1
+// @description  Генерация группового счета, проставление оплаты
 // @author       MoHaX
 // @match        https://online.bnovo.ru/bookinggroup/general/*
 // @grant        GM_xmlhttpRequest
@@ -257,7 +257,46 @@
 		bInit = true;
 		console.log(database, totalSumm);
     }
+	function ensurePaymentModalExists() {
+	  if (!document.getElementById('payment_modal')) {
+		const wrapper = document.createElement('div');
+		wrapper.style.display = 'none';
 
+		wrapper.innerHTML = `
+		  <div id="payment_modal" class="modal">
+			<div class="grid m-padding m-cellpadding">
+			  <div id="payment_form_container" class="grid__cell">
+				<!-- payment form will be loaded here -->
+			  </div>
+			</div>
+			<div class="modal__close arcticmodal-close i-close"></div>
+		  </div>
+		`;
+
+		document.body.appendChild(wrapper);
+	  }
+	}
+
+	function getTotalAmountFromFooter() {
+	  // Находим нужную ячейку в footer по тексту "Итого"
+	  const thList = document.querySelectorAll('tfoot th');
+
+	  for (const th of thList) {
+		const label = th.querySelector('.data-grid-label');
+		if (label && label.textContent.trim() === 'Итого') {
+		  // Удаляем из текста символ рубля и неразрывные пробелы
+		  const text = th.textContent.replace(/\s/g, '').replace('₽', '');
+		  const numberStr = text.replace(/[^\d,]/g, '').replace(',', '.'); // Преобразуем в формат JS
+		  const number = parseFloat(numberStr);
+
+		  if (!isNaN(number)) {
+			return number;
+		  }
+		}
+	  }
+
+	  return null; // Если не нашли
+	}
 	function loadScript(src, callback) {
 		const script = document.createElement('script');
 		script.src = src;
@@ -272,6 +311,133 @@
 	function InitGenerator() {
 		loadScript(`https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js` , function () { console.log('JSZip загружен!'); });
 		loadScript(`https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js` , function () { console.log('QR загружен!'); });
+		loadScript(`https://online.bnovo.ru/public/js/payment_form.js` , function () { console.log('payment_form загружен!'); });
+		let paymentDone = false;
+		function paymentFormSubmit(action) {
+		   let form = $('#payment_form');
+		   let fiscal_check_printed = form.find('input[name=fiscal_check_printed]');
+		   preloader_show();
+
+		   if (fiscal_check_printed) {
+			  form.find('select, input, textarea').prop('disabled', false);
+		   }
+
+		   form.ajaxSubmit({
+			  url: '/booking/' + action,
+			  dataType: 'json',
+			  success: function(data) {
+				 if (fiscal_check_printed) {
+					makeFiscalCheckPrintedForm();
+				 }
+				 if ( data.result == 'success' || data == 'session_expired' ) {
+					const bookingId = form.find('input[name^=booking_id]').val();
+					document.dispatchEvent(new CustomEvent("booking-legacy-edit", {detail: {bookingId: bookingId}}));
+					form.arcticmodal('close');
+					 paymentDone = true;
+					//location.reload();
+				 }
+				 else if (data.result == 'unauthorized_action') {
+					preloader_hide();
+					access_restricted_show( false );
+				 }
+				 else if (data.errors) {
+					preloader_hide();
+					displayPaymentErrors(data.errors);
+				 }
+				 else {
+					preloader_hide();
+				 }
+			  },
+			  error: function(jqXHR, exception) {
+				 if (fiscal_check_printed) {
+					makeFiscalCheckPrintedForm();
+				 }
+				 preloader_hide();
+				 error_show(I18nUI.__('Ошибка отправки запроса. Попробуйте позже'), 'm-red');
+			  }
+		   });
+		}
+		const targetElement = document.querySelector('.bookmarks__item.m-summary.d-tablet-none');
+		const totalPrice = getTotalAmountFromFooter(); // Финальная стоимость со скидкой
+
+        if (targetElement) {
+            // Создаем кнопку
+            const button = document.createElement('button');
+            button.classList.add('notes__submit', 'button', 'js-ym-send-hit');
+            button.style.cssText = `
+            width: auto;
+            border-radius: 4px !important; /* Принудительно применяем border-radius */ `;
+
+            // Добавляем текст кнопки
+            const textDesktop = document.createElement('span');
+            textDesktop.classList.add('d-mobile-none');
+            textDesktop.textContent = 'Оплатить';
+
+            button.appendChild(textDesktop);
+
+            // Обертка для кнопки и подсказки
+            const buttonWrapper = document.createElement('div');
+            buttonWrapper.style.cssText = `
+            position: relative;
+			left: 1%;
+            display: inline-block;
+			color: #00ccff !important; `;
+            buttonWrapper.appendChild(button);
+
+            // Добавляем обработчик события для кнопки
+			button.addEventListener('click', async () => {
+				ensurePaymentModalExists();
+				const rows = document.querySelectorAll('table.data-grid tbody tr[data-booking-id]');
+
+				for (const row of rows) {
+					const id = row.getAttribute('data-booking-id');
+
+					// Находим чекбокс
+					const checkbox = row.querySelector('input.bookingGroupsCheckboxes[type="checkbox"]');
+					if (!checkbox || !checkbox.checked) {
+						continue; // если чекбокса нет или он не выбран — пропускаем
+					}
+
+					const cells = row.querySelectorAll('td');
+					let sum = null;
+
+					for (const cell of cells) {
+						const label = cell.querySelector('.data-grid-label');
+						if (label && label.textContent.trim() === 'Итого') {
+							const rawText = cell.textContent.replace('Итого', '').replace(/₽/g, '').trim();
+							const cleaned = rawText.replace(/\s/g, '').replace(',', '.');
+							sum = parseFloat(cleaned);
+						}
+					}
+
+					if (id && sum !== null) {
+						await new Promise(resolve => {
+							paymentDone = false;
+
+							openPaymentForm(id, 0, 0, 0, 0, 0, () => {
+								const payment_form = document.getElementById('payment_form');
+								payment_form.querySelector('select[name="services[method_id][]"]').value = "1";
+								payment_form.querySelector('input[name="services[amount][]"]').value = sum;
+
+								const action = payment_form.querySelector('input[name=action]').value;
+								paymentFormSubmit(action); // должен завершаться: paymentDone = true;
+							}, 0);
+
+							const checkInterval = setInterval(() => {
+								if (paymentDone) {
+									clearInterval(checkInterval);
+									resolve();
+								}
+							}, 100);
+						});
+					}
+				}
+
+				location.reload(); // после всех отмеченных
+			});
+						// Вставляем кнопку после целевого элемента
+            targetElement.insertAdjacentElement('afterend', buttonWrapper);
+        }
 
 		bazaId = document.querySelector('.offline-header.js-offline-header').getAttribute('data-account-id');
 
