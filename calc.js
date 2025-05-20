@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rooms Calc
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Калькулятор стоимости номера
 // @author       MoHaX
 // @match        https://online.bnovo.ru/planning*
@@ -38,11 +38,11 @@
         "4х местный Шалаш": 								{ basePrice: 0, extraPrice: 0 },
 		// Алые паруса
 		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 1880, extraPrice: 840 },
-		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 0, extraPrice: 0 },
+		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2540, extraPrice: 1300 },
 		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 4760, extraPrice: 1250 },
 		"Люкс-Cтудия" : 									{ basePrice: 5020, extraPrice: 1420 },
 		"1-но местный стандарт" : 							{ basePrice: 2840, extraPrice: 840 },
-		"1но местный - Корпус 1" : 							{ basePrice: 0, extraPrice: 0 },
+		"1но местный - Корпус 1" : 							{ basePrice: 3530, extraPrice: 1300 },
 		"2-х местный стандарт" : 							{ basePrice: 3760, extraPrice: 840 },
 		"Аппартаменты" : 									{ basePrice: 0, extraPrice: 0 },
     };
@@ -72,11 +72,11 @@
         "4х местный Шалаш": 								{ basePrice: 0, extraPrice: 0 },
 		// Алые паруса
 		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 1880, extraPrice: 840 },
-		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 0, extraPrice: 0 },
+		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2540, extraPrice: 1300 },
 		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 4760, extraPrice: 1250 },
 		"Люкс-Cтудия" : 									{ basePrice: 5020, extraPrice: 1420 },
 		"1-но местный стандарт" : 							{ basePrice: 2840, extraPrice: 840 },
-		"1но местный - Корпус 1" : 							{ basePrice: 0, extraPrice: 0 },
+		"1но местный - Корпус 1" : 							{ basePrice: 3530, extraPrice: 1300 },
 		"2-х местный стандарт" : 							{ basePrice: 3760, extraPrice: 840 },
 		"Аппартаменты" : 									{ basePrice: 0, extraPrice: 0 },
     };
