@@ -1,15 +1,83 @@
 // ==UserScript==
 // @name         Модификатор счета
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.1
 // @description  Перехват DOCX, генерация QR и замена картинки прямо в документе
 // @match        https://online.bnovo.ru/booking/general/*
 // @grant        none
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bnovo.ru
+// @run-at       document-idle
 // ==/UserScript==
 
 (function () {
     'use strict';
+	let qr, bookingNumber, container, surname, bazaId;
+	function insertSchetFL() {
+        const root = document.querySelector('span.d-mobile-none.g-ml-auto');
+        if (!root) {
+            console.warn('Не найден контейнер с шаблонами');
+            return;
+        }
+
+        const bookingId = document.querySelector('input[name="booking_id"]')?.value;
+        const guestId = document.querySelector('input[name="customer_id"]')?.value;
+        surname = document.querySelector('input[name="surname"]')?.value || '';
+        const name = document.querySelector('input[name="name"]')?.value || '';
+        const guestName = (surname + name).replace(/\s/g, '');
+
+        if (!bookingId || !guestId || !guestName) {
+            console.warn('Недостаточно данных для вставки ссылки');
+            return;
+        }
+
+        const schetFLLink = [...root.querySelectorAll('.drop__link')]
+            .find(el => el.textContent.includes('счетФЛ'));
+
+        if (!schetFLLink) {
+            console.warn("Элемент 'счетФЛ' не найден");
+            return;
+        }
+
+        const sublinksDiv = schetFLLink.nextElementSibling;
+        if (!sublinksDiv || !sublinksDiv.classList.contains('drop__sublinks')) {
+            console.warn('Блок .drop__sublinks не найден');
+            return;
+        }
+
+        // Если ссылка уже есть, не добавляем повторно
+        const existingLink = sublinksDiv.querySelector(`a[href*="template=счетФЛ"]`);
+        if (existingLink) {
+            console.log('Ссылка уже существует:', existingLink.href);
+            return;
+        }
+
+        const newA = document.createElement('a');
+        newA.className = 'drop__link';
+        newA.target = '_blank';
+        newA.href = `/booking/doc/${bookingId}/?template=счетФЛ&guest=${guestId}&type=doc`;
+        newA.textContent = guestName;
+
+        sublinksDiv.appendChild(newA);
+        sublinksDiv.style.display = 'block';
+
+        console.log('✅ Ссылка счетФЛ успешно добавлена:', newA.outerHTML);
+    }
+
+    // Дождёмся загрузки DOM и затем дождёмся появления нужного блока
+    window.addEventListener('load', () => {
+        const interval = setInterval(() => {
+            const ready = document.querySelector('span.d-mobile-none.g-ml-auto') &&
+                          document.querySelector('input[name="booking_id"]') &&
+                          document.querySelector('input[name="customer_id"]') &&
+                          document.querySelector('input[name="surname"]') &&
+                          document.querySelector('input[name="name"]');
+            if (ready) {
+                clearInterval(interval);
+                insertSchetFL();
+            }
+        }, 300);
+    });
+
 	 window.baza = {
         "1535": {
             name: "АП",
@@ -48,7 +116,7 @@
             return null;
         }
     }
-	let qr, bookingNumber, container, surname, bazaId;
+	
 	function LoadMeems() {
 		surname = document.querySelector('input[name="surname"]').value.trim();
 		bazaId = document.querySelector('.offline-header.js-offline-header').getAttribute('data-account-id');
