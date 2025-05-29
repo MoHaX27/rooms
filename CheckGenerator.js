@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Group mod
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Генерация группового счета, проставление оплаты
 // @author       MoHaX
 // @match        https://online.bnovo.ru/bookinggroup/general/*
@@ -242,21 +242,58 @@
 	}
 
 	async function extractBookingLinks() {
-        let links = [];
+//         let links = [];
 
-        document.querySelectorAll('table.data-grid a[href*="/booking/general/"]').forEach(a => { links.push(a.href); } );
+//         document.querySelectorAll('table.data-grid a[href*="/booking/general/"]').forEach(a => { links.push(a.href); } );
+
+// 		if (links.length === 0) {
+//             console.error('Карточки бронирования не найдены.');
+//             return;
+//         }
+
+//         for (const card of links) {
+//             await extractBookingInfo(card);
+//         }
+// 		bInit = true;
+// 		console.log(database, totalSumm);
+		let links = [];
+		// Получаем все строки таблицы с booking-id
+		const rows = document.querySelectorAll('table.data-grid tbody tr[data-booking-id]');
+
+		for (const row of rows) {
+			// Находим чекбокс внутри строки
+			const checkbox = row.querySelector('input.bookingGroupsCheckboxes[type="checkbox"]');
+			if (!checkbox || !checkbox.checked) {
+				continue; // пропускаем, если чекбокса нет или он не отмечен
+			}
+
+			// Находим ссылку на бронирование
+			const linkEl = row.querySelector('a[href*="/booking/general/"]');
+			if (linkEl) {
+				links.push(linkEl.href);
+			}
+		}
 
 		if (links.length === 0) {
-            console.error('Карточки бронирования не найдены.');
-            return;
-        }
+			console.error('Не выбрано ни одной брони через чекбоксы.');
+			return;
+		}
 
-        for (const card of links) {
-            await extractBookingInfo(card);
-        }
+		for (const card of links) {
+			await extractBookingInfo(card);
+		}
+
 		bInit = true;
 		console.log(database, totalSumm);
     }
+	const waitForBInit = (timeout = 10000) => new Promise((resolve, reject) => {
+		const start = Date.now();
+		(function check() {
+			if (bInit) return resolve(true);
+			if (Date.now() - start > timeout) return reject('bInit timeout');
+			setTimeout(check, 100);
+		})();
+	});
 	function ensurePaymentModalExists() {
 	  if (!document.getElementById('payment_modal')) {
 		const wrapper = document.createElement('div');
@@ -467,7 +504,7 @@
 			onload: function (response) {
 				try {
 					eval(response.responseText);
-					extractBookingLinks();
+					//extractBookingLinks();
 				} catch (e) {
 					console.error('Ошибка загрузки данных:', e);
 				}
@@ -482,7 +519,11 @@
             const link = e.target.closest('a[href*="/booking/doc_predefined/"]');
             if (!link) return;
 			e.preventDefault();
-			if (!bInit) return;
+			preloader_show();
+			await extractBookingLinks();
+			await waitForBInit();
+			preloader_hide();
+			//if (!bInit) return;
 
             const urlqwe = link.href;
 
