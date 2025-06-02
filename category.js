@@ -221,6 +221,16 @@ window.roomCategories = {
             printName: "1но мест Люкс Студия",
 	    checkName: "Люкс Студия"
         },
+	"2120161402": { //  Аппартаменты 
+            basePrice: 2610,
+            extraPrice: 1420,
+            baseOverPrice: 2610,
+            extraOverPrice: 1420,
+            maxBaseGuests: 4,
+	    maxExtraGuests: 2,
+            printName: "4х Аппартаменты",
+	    checkName: "Аппартаменты"
+        },
 	"4130272292": { //  Апт. 3-местн. размещ. 
             basePrice: 3320,
             extraPrice: 1420,
@@ -229,6 +239,26 @@ window.roomCategories = {
             maxBaseGuests: 3,
 	    maxExtraGuests: 0,
             printName: "3х Аппартаменты",
+	    checkName: "Аппартаменты"
+        },
+	"466705239": { //  Апт. 2-местн. размещ. 
+            basePrice: 4720,
+            extraPrice: 1420,
+            baseOverPrice: 4720,
+            extraOverPrice: 1420,
+            maxBaseGuests: 2,
+	    maxExtraGuests: 0,
+            printName: "2х Аппартаменты",
+	    checkName: "Аппартаменты"
+        },
+	"2921127762": { //  Апт. 1-местн. размещ. 
+            basePrice: 8930,
+            extraPrice: 1420,
+            baseOverPrice: 8930,
+            extraOverPrice: 1420,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 0,
+            printName: "1х Аппартаменты",
 	    checkName: "Аппартаменты"
         },
 	"1746652214": { //  Стандарт 2х местный (место в ном)-Корпус 1
