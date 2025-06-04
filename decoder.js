@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Расшифровщик
 // @namespace    http://tampermonkey.net/
-// @version      3.6
-// @description  Automatically decode Bnovo booking information
+// @version      3.7
+// @description  Расшифровка брони по кнопке
 // @author       МоНаХ
 // @match        https://online.bnovo.ru/booking/general/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bnovo.ru
@@ -138,7 +138,7 @@
 			//alert("Расшифровка: Час заезда и выезда различается!");
 		}
 		checkOutDate.setHours(checkInDate.getHours());
-        const isMorningCheckIn = checkInDate.getHours() < 13; // Заезд до 13:00
+        const isMorningCheckIn = checkInDate.getHours() <= 13; // Заезд до 13:00
 
         const monthlyDays = calculateMonthlyDays(checkInDate, checkOutDate, isMorningCheckIn);
         console.log(monthlyDays[1], monthlyDays[2]);
