@@ -221,13 +221,23 @@ window.roomCategories = {
             printName: "1но мест Люкс Студия",
 	    checkName: "Люкс Студия"
         },
-	"2120161402": { //  Аппартаменты 
+	"3050570759": { //  Апт. 4-х местн. размещ. (4+1) 
             basePrice: 2610,
             extraPrice: 1420,
             baseOverPrice: 2610,
             extraOverPrice: 1420,
             maxBaseGuests: 4,
 	    maxExtraGuests: 2,
+            printName: "4х Аппартаменты",
+	    checkName: "Аппартаменты"
+        },
+	"2120161402": { //  Аппартаменты 
+            basePrice: 2610,
+            extraPrice: 1420,
+            baseOverPrice: 2610,
+            extraOverPrice: 1420,
+            maxBaseGuests: 4,
+	    maxExtraGuests: 0,
             printName: "4х Аппартаменты",
 	    checkName: "Аппартаменты"
         },
