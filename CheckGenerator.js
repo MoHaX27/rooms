@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Group mod
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Генерация группового счета, проставление оплаты
 // @author       MoHaX
 // @match        https://online.bnovo.ru/bookinggroup/general/*
@@ -556,8 +556,13 @@
 					}
 				}
 
-				const response = await fetch('https://gleaming-quokka-52212a.netlify.app/images/ticket.xlsx');
-				const arrayBuffer = await response.arrayBuffer();
+				const response = await fetch('https://raw.githubusercontent.com/MoHaX27/rooms/refs/heads/main/ticketGroup.json');
+				const byteArray = await response.json();
+				const uint8Array = new Uint8Array(byteArray);
+				const arrayBuffer = uint8Array.buffer;
+
+				//const response = await fetch('https://gleaming-quokka-52212a.netlify.app/images/ticket.xlsx');
+				//const arrayBuffer = await response.arrayBuffer();
 
 				const workbook = new ExcelJS.Workbook();
 				await workbook.xlsx.load(arrayBuffer);
