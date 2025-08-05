@@ -281,6 +281,16 @@ window.roomCategories = {
             printName: "2х Стандарт (Корпус 1)",
 	    checkName: "Стандарт 2х местный (Корпус 1)"
         },
+	"1427329284": { //  Стандарт 2х местный (место в ном)-Корпус 1 (1+1) 
+            basePrice: 2540,
+            extraPrice: 1300,
+            baseOverPrice: 2540,
+            extraOverPrice: 1300,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 1,
+            printName: "2х Стандарт (Корпус 1)",
+	    checkName: "Стандарт 2х местный (Корпус 1)"
+        },
 	"242212083": { //  1но местный - Корпус 1
             basePrice: 3530,
             extraPrice: 1300,
