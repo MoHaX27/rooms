@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Rooms Calc
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Калькулятор стоимости номера
 // @author       MoHaX
 // @match        https://online.bnovo.ru/planning*
 // @grant        none
+// @run-at       document-idle
 // ==/UserScript==
 
 (function() {
@@ -460,8 +461,9 @@
         if (!targetElement) return;
 
         let newButton = document.createElement('div');
-        newButton.className = 'bnovo-header-menu-item--button';
-        newButton.innerHTML = '<div><div class="bnovo-header-menu-item--button__text">Калькулятор</div></div>';
+        newButton.className = 'v-btn v-btn--has-bg theme--light elevation-0 v-size--large primary';
+        newButton.innerHTML = '<div><div class="v-btn__content"> Калькулятор</div></div>';
+		newButton.style.left = '-1%';
         newButton.style.cursor = 'pointer';
         newButton.onclick = (event) => {
             event.stopPropagation();
@@ -477,6 +479,6 @@
     setTimeout(() => {
         addButton();
 		setInterval(updatePriceDisplay, 200);
-    }, 1000);  // Задержка 1 секунда
+    }, 3000);  // Задержка 1 секунда
 
 })();
