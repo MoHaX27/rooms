@@ -20,6 +20,16 @@ window.roomCategories = {
             printName: "Стандарт", // Категоря номера для расшифровки
 	    checkName: "Стандарт 2х местный" // Категоря номера для счета
         },
+		"1839888264": { //  Одноместное размещение в Стандарт
+            basePrice: 4160,
+            extraPrice: 0,
+            baseOverPrice: 5800,
+            extraOverPrice: 0,
+            maxBaseGuests: 1,
+	    maxExtraGuests: 0,
+            printName: "Стандарт",
+	    checkName: "Одноместное размещение в 2х мест"
+        },
         "3628094238": { //  Стандарт (2+1) 2х местный
             basePrice: 2080,
             extraPrice: 1200,
