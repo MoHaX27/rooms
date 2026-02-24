@@ -424,9 +424,9 @@ window.roomCategories = {
         },
 	"1653107628": { //  4х местный 2х комнатный Семейный (с кухней)
             basePrice: 1800,
-            extraPrice: 980,
+            extraPrice: 930,
             baseOverPrice: 2210,
-            extraOverPrice: 1100,
+            extraOverPrice: 1010,
             maxBaseGuests: 4,
 	    maxExtraGuests: 0,
             printName: "4х Комфорт (с кухней)",
@@ -434,9 +434,9 @@ window.roomCategories = {
         },
 	"867276793": { //  4х местный 2х комнатный Семейный (с кухней) (4+1)
             basePrice: 1800,
-            extraPrice: 980,
+            extraPrice: 930,
             baseOverPrice: 2210,
-            extraOverPrice: 1100,
+            extraOverPrice: 1010,
             maxBaseGuests: 4,
 	    maxExtraGuests: 1,
             printName: "4х Комфорт (с кухней)",
