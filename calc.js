@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rooms Calc
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Калькулятор стоимости номера
 // @author       MoHaX
 // @match        https://online.bnovo.ru/planning*
@@ -15,85 +15,85 @@
     // Данные о ценах в виде объекта, добавляем цену дополнительного места
     const priceLow = {
 		//Стрежень
-		"Повышенный Комфорт 2-х местный 2-х комнатный" : 	{ basePrice: 0, extraPrice: 0 },
-		"Комфорт 2 местный 2х комнатный" : 					{ basePrice: 4320, extraPrice: 900 },
-		"Дуплекс  2х местный 2х комнатный" : 				{ basePrice: 3400, extraPrice: 800 },
-		"Улучшенный Стандарт 2х местный" : 					{ basePrice: 3240, extraPrice: 900 },
-		"Стандарт  2х местный" : 							{ basePrice: 2800, extraPrice: 800 },
-		"Стандарт 3х местный" : 							{ basePrice: 3810, extraPrice: 800 },
-		"Семейный  4х местный 2х комнатный" : 				{ basePrice: 4960, extraPrice: 800 },
-		"Комфорт 2-х местный 2-х комнатный" : 				{ basePrice: 0, extraPrice: 0 },
-		"Дуплекс 2-х местный 2-х комнатный" : 				{ basePrice: 0, extraPrice: 0 },
-		"Стандарт 2-х местный" : 							{ basePrice: 0, extraPrice: 0 },
-		"Семейный  4-х местный 2-х комнатный" : 			{ basePrice: 0, extraPrice: 0 },
+		"Повышенный Комфорт 2-х местный 2-х комнатный" : 	{ basePrice: 0,    extraPrice: 0 },
+		"Комфорт 2 местный 2х комнатный" : 					{ basePrice: 6400, extraPrice: 1340 },
+		"Дуплекс  2х местный 2х комнатный" : 				{ basePrice: 5040, extraPrice: 1200 },
+		"Улучшенный Стандарт 2х местный" : 					{ basePrice: 4800, extraPrice: 1340 },
+		"Стандарт  2х местный" : 							{ basePrice: 4160, extraPrice: 1200 },
+		"Стандарт 3х местный" : 							{ basePrice: 5640, extraPrice: 1200 },
+		"Семейный  4х местный 2х комнатный" : 				{ basePrice: 7360, extraPrice: 1200 },
+		"Комфорт 2-х местный 2-х комнатный" : 				{ basePrice: 0,    extraPrice: 0 },
+		"Дуплекс 2-х местный 2-х комнатный" : 				{ basePrice: 0,    extraPrice: 0 },
+		"Стандарт 2-х местный" : 							{ basePrice: 0,    extraPrice: 0 },
+		"Семейный  4-х местный 2-х комнатный" : 			{ basePrice: 0,    extraPrice: 0 },
 		// Голубая гавань
-        "1-но местный Стандарт": 							{ basePrice: 1230, extraPrice: 550 },
-        "2х местный Стандарт": 								{ basePrice: 2120, extraPrice: 550 },
-        "3х местный Стандарт": 								{ basePrice: 2700, extraPrice: 550 },
-        "2х местный 2х комнатный Комфорт": 					{ basePrice: 3080, extraPrice: 650 },
-        "2х мест 2х комнат Комфорт (с кухней)": 			{ basePrice: 3560, extraPrice: 700 },
-        "4х местный 2х комнатный Семейный (с кухней)": 		{ basePrice: 5120, extraPrice: 550 },
-        "4х местный 3х комнатный номер": 					{ basePrice: 0, extraPrice: 0 },
-        "2х местный Эконом": 								{ basePrice: 1300, extraPrice: 0 },
-        "3х местный Эконом": 								{ basePrice: 1860, extraPrice: 0 },
-        "4х местный Шалаш": 								{ basePrice: 0, extraPrice: 0 },
+        "1-но местный Стандарт": 							{ basePrice: 1730, extraPrice: 930 },
+        "2х местный Стандарт": 								{ basePrice: 2980, extraPrice: 930 },
+        "3х местный Стандарт": 								{ basePrice: 3780, extraPrice: 930 },
+        "2х местный 2х комнатный Комфорт": 					{ basePrice: 4320, extraPrice: 1000 },
+        "2х мест 2х комнат Комфорт (с кухней)": 			{ basePrice: 5000, extraPrice: 980 },
+        "4х местный 2х комнатный Семейный (с кухней)": 		{ basePrice: 7200, extraPrice: 930 },
+        "4х местный 3х комнатный номер": 					{ basePrice: 0,    extraPrice: 0 },
+        "2х местный Эконом": 								{ basePrice: 2000, extraPrice: 0 },
+        "3х местный Эконом": 								{ basePrice: 2730, extraPrice: 0 },
+        "4х местный Шалаш": 								{ basePrice: 0,    extraPrice: 0 },
 		// Алые паруса
-		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 1880, extraPrice: 840 },
-		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2540, extraPrice: 1300 },
-		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 4760, extraPrice: 1250 },
-		"Люкс-Cтудия" : 									{ basePrice: 5020, extraPrice: 1420 },
-		"1-но местный стандарт" : 							{ basePrice: 2840, extraPrice: 840 },
-		"1но местный - Корпус 1" : 							{ basePrice: 3530, extraPrice: 1300 },
-		"2-х местный стандарт" : 							{ basePrice: 3760, extraPrice: 840 },
-		"Аппартаменты" : 									{ basePrice: 0, extraPrice: 0 },
+		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 2270, extraPrice: 1010 },
+		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2930, extraPrice: 1500 },
+		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 2930, extraPrice: 1640 },
+		"Люкс-Cтудия" : 									{ basePrice: 5430, extraPrice: 1640 },
+		"1-но местный стандарт" : 							{ basePrice: 3170, extraPrice: 1010 },
+		"1но местный - Корпус 1" : 							{ basePrice: 3890, extraPrice: 1500 },
+		"2-х местный стандарт" : 							{ basePrice: 4540, extraPrice: 1010 },
+		"Аппартаменты" : 									{ basePrice: 0,    extraPrice: 0 },
     };
 	const priceHigh = {
 		//Стрежень
-		"Повышенный Комфорт 2-х местный 2-х комнатный" : 	{ basePrice: 0, extraPrice: 0 },
-		"Комфорт 2 местный 2х комнатный" : 					{ basePrice: 5620, extraPrice: 1270 },
-		"Дуплекс  2х местный 2х комнатный" : 				{ basePrice: 4940, extraPrice: 1070 },
-		"Улучшенный Стандарт 2х местный" : 					{ basePrice: 4780, extraPrice: 1270 },
-		"Стандарт  2х местный" : 							{ basePrice: 4340, extraPrice: 1070 },
-		"Стандарт 3х местный" : 							{ basePrice: 5910, extraPrice: 1070 },
-		"Семейный  4х местный 2х комнатный" : 				{ basePrice: 7360, extraPrice: 1070 },
-		"Комфорт 2-х местный 2-х комнатный" : 				{ basePrice: 0, extraPrice: 0 },
-		"Дуплекс 2-х местный 2-х комнатный" : 				{ basePrice: 0, extraPrice: 0 },
-		"Стандарт 2-х местный" : 							{ basePrice: 0, extraPrice: 0 },
-		"Семейный  4-х местный 2-х комнатный" : 			{ basePrice: 0, extraPrice: 0 },
+		"Повышенный Комфорт 2-х местный 2-х комнатный" : 	{ basePrice: 0,    extraPrice: 0 },
+		"Комфорт 2 местный 2х комнатный" : 					{ basePrice: 7060, extraPrice: 1610 },
+		"Дуплекс  2х местный 2х комнатный" : 				{ basePrice: 6620, extraPrice: 1490 },
+		"Улучшенный Стандарт 2х местный" : 					{ basePrice: 6220, extraPrice: 1610 },
+		"Стандарт  2х местный" : 							{ basePrice: 5800, extraPrice: 1490 },
+		"Стандарт 3х местный" : 							{ basePrice: 7440, extraPrice: 1490 },
+		"Семейный  4х местный 2х комнатный" : 				{ basePrice: 9400, extraPrice: 1490 },
+		"Комфорт 2-х местный 2-х комнатный" : 				{ basePrice: 0,    extraPrice: 0 },
+		"Дуплекс 2-х местный 2-х комнатный" : 				{ basePrice: 0,    extraPrice: 0 },
+		"Стандарт 2-х местный" : 							{ basePrice: 0,    extraPrice: 0 },
+		"Семейный  4-х местный 2-х комнатный" : 			{ basePrice: 0,    extraPrice: 0 },
 		// Голубая гавань
-        "1-но местный Стандарт": 							{ basePrice: 1640, extraPrice: 670 },
-        "2х местный Стандарт": 								{ basePrice: 3020, extraPrice: 670 },
-        "3х местный Стандарт": 								{ basePrice: 4260, extraPrice: 670 },
-        "2х местный 2х комнатный Комфорт": 					{ basePrice: 4140, extraPrice: 760 },
-        "2х мест 2х комнат Комфорт (с кухней)": 			{ basePrice: 4540, extraPrice: 880 },
-        "4х местный 2х комнатный Семейный (с кухней)": 		{ basePrice: 7360, extraPrice: 670 },
-        "4х местный 3х комнатный номер": 					{ basePrice: 0, extraPrice: 0 },
+        "1-но местный Стандарт": 							{ basePrice: 1970, extraPrice: 1010 },
+        "2х местный Стандарт": 								{ basePrice: 3640, extraPrice: 1010 },
+        "3х местный Стандарт": 								{ basePrice: 5130, extraPrice: 1010 },
+        "2х местный 2х комнатный Комфорт": 					{ basePrice: 4980, extraPrice: 1100 },
+        "2х мест 2х комнат Комфорт (с кухней)": 			{ basePrice: 5460, extraPrice: 1100 },
+        "4х местный 2х комнатный Семейный (с кухней)": 		{ basePrice: 8840, extraPrice: 1010 },
+        "4х местный 3х комнатный номер": 					{ basePrice: 0,    extraPrice: 0 },
         "2х местный Эконом": 								{ basePrice: 1760, extraPrice: 0 },
         "3х местный Эконом": 								{ basePrice: 2490, extraPrice: 0 },
-        "4х местный Шалаш": 								{ basePrice: 0, extraPrice: 0 },
+        "4х местный Шалаш": 								{ basePrice: 0,    extraPrice: 0 },
 		// Алые паруса
-		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 1880, extraPrice: 840 },
-		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2540, extraPrice: 1300 },
-		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 4760, extraPrice: 1250 },
-		"Люкс-Cтудия" : 									{ basePrice: 5020, extraPrice: 1420 },
-		"1-но местный стандарт" : 							{ basePrice: 2840, extraPrice: 840 },
-		"1но местный - Корпус 1" : 							{ basePrice: 3530, extraPrice: 1300 },
-		"2-х местный стандарт" : 							{ basePrice: 3760, extraPrice: 840 },
-		"Аппартаменты" : 									{ basePrice: 0, extraPrice: 0 },
+		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 2270, extraPrice: 1010 },
+		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2930, extraPrice: 1500 },
+		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 2930, extraPrice: 1640 },
+		"Люкс-Cтудия" : 									{ basePrice: 5430, extraPrice: 1640 },
+		"1-но местный стандарт" : 							{ basePrice: 3170, extraPrice: 1010 },
+		"1но местный - Корпус 1" : 							{ basePrice: 3890, extraPrice: 1500 },
+		"2-х местный стандарт" : 							{ basePrice: 4540, extraPrice: 1010 },
+		"Аппартаменты" : 									{ basePrice: 0,    extraPrice: 0 },
     };
   	const baza = {
         "1535": {
             name: "АП",
-            foodPrice: 1420,
+            foodPrice: 1630,
             medicine: 1200
         },
         "1534": {
             name: "Стрежень",
-            foodPrice: 1130
+            foodPrice: 1300
         },
         "2756": {
             name: "ГГ",
-            foodPrice: 1130
+            foodPrice: 1300
         }
     };
 
