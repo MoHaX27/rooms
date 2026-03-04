@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Модификатор счета
 // @namespace    http://tampermonkey.net/
-// @version      2.1
+// @version      2.2
 // @description  Перехват DOCX, генерация QR и замена картинки прямо в документе
 // @match        https://online.bnovo.ru/booking/general/*
 // @grant        none
@@ -81,16 +81,21 @@
 	 window.baza = {
         "1535": {
             name: "АП",
-            foodPrice: 1420,
+            foodPrice: 1630,
             medicine: 1200
         },
         "1534": {
             name: "Стрежень",
-            foodPrice: 1130
+            foodPrice: 1300
         },
         "2756": {
             name: "ГГ",
-            foodPrice: 1130
+            foodPrice: 1300
+        }
+		 ,
+        "2756": {
+            name: "Поршень",
+            foodPrice: 1420
         }
     };
 	const loadScripts = async () => {
