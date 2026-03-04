@@ -469,17 +469,22 @@ window.roomCategories = {
             name: "АП",
             foodPrice: 1630,
             medicine: 1200,
-	    checkName: "с/п Алые паруса"
+	    	checkName: "с/п Алые паруса"
         },
         "1534": {
             name: "Стрежень",
             foodPrice: 1300,
-	    checkName: "б/о Стрежень"
+	    	checkName: "б/о Стрежень"
         },
         "2756": {
             name: "ГГ",
             foodPrice: 1300,
-	    checkName: "б/о Голубая гавань"
+	    	checkName: "б/о Голубая гавань"
+        },
+        "50423": {
+            name: "Поршень",
+            foodPrice: 1420,
+	    	checkName: "б/о Поршень"
         }
     };
 
