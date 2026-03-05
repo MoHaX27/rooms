@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rooms Calc
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Калькулятор стоимости номера
 // @author       MoHaX
 // @match        https://online.bnovo.ru/planning*
@@ -40,7 +40,7 @@
 		// Алые паруса
 		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 2270, extraPrice: 1010 },
 		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2930, extraPrice: 1500 },
-		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 2930, extraPrice: 1640 },
+		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 5860, extraPrice: 1640 },
 		"Люкс-Cтудия" : 									{ basePrice: 5430, extraPrice: 1640 },
 		"1-но местный стандарт" : 							{ basePrice: 3170, extraPrice: 1010 },
 		"1но местный - Корпус 1" : 							{ basePrice: 3890, extraPrice: 1500 },
@@ -74,7 +74,7 @@
 		// Алые паруса
 		"Стандарт 2-х местный (место в номере)" : 			{ basePrice: 2270, extraPrice: 1010 },
 		"Стандарт 2х местный (место в ном)-Корпус 1" : 		{ basePrice: 2930, extraPrice: 1500 },
-		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 2930, extraPrice: 1640 },
+		"2-х местный 2-х комнатный Комфорт" : 				{ basePrice: 5860, extraPrice: 1640 },
 		"Люкс-Cтудия" : 									{ basePrice: 5430, extraPrice: 1640 },
 		"1-но местный стандарт" : 							{ basePrice: 3170, extraPrice: 1010 },
 		"1но местный - Корпус 1" : 							{ basePrice: 3890, extraPrice: 1500 },
