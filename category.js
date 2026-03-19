@@ -443,9 +443,9 @@ window.roomCategories = {
 	    checkName: "4х местный 2х комнатный Семейный (с кухней)"
         },
 	"3644462357": { //  2х местный Эконом
-            basePrice: 910,
+            basePrice: 1000,
             extraPrice: 0,
-            baseOverPrice: 1000,
+            baseOverPrice: 1090,
             extraOverPrice: 0,
             maxBaseGuests: 2,
 	    maxExtraGuests: 0,
@@ -453,9 +453,9 @@ window.roomCategories = {
 	    checkName: "2х местный Эконом"
         },
 	"4234027792": { //  3х местный Эконом
-            basePrice: 1000,
+            basePrice: 910,
             extraPrice: 0,
-            baseOverPrice: 1090,
+            baseOverPrice: 1000,
             extraOverPrice: 0,
             maxBaseGuests: 3,
 	    maxExtraGuests: 0,
