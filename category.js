@@ -1,5 +1,5 @@
 window.roomCategories = {
-	0: { //  Затычка что бы не крашило
+	0: { //  Затычка что бы не крашило)))
             basePrice: 0,
             extraPrice: 0,
             baseOverPrice: 0,
